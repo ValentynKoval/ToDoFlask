@@ -11,6 +11,8 @@ class Users(db.Model):
     password = db.Column(db.String(200), nullable=False)
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
 
+    tasks = db.relationship('Tasks', backref='users', lazy=True)
+
     def set_password(self, password):
         self.password = generate_password_hash(password)
 
